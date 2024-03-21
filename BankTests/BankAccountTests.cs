@@ -43,7 +43,10 @@ public class BankAccountTests
         {
             // Assert
             StringAssert.Contains(BankAccount.DebitAmountLessThanZeroMessage, e.Message);
+            return;
         }
+
+        Assert.Fail("The expected exception was not thrown.");
     }
 
     [Test]
@@ -51,7 +54,7 @@ public class BankAccountTests
     {
         // Arrange
         double beginningBalance = 11.99;
-        double debitAmount = 100.00;
+        double debitAmount = 20.0;
         BankAccount account = new("Mr. Bryan Walton", beginningBalance);
 
         // Act
@@ -63,6 +66,9 @@ public class BankAccountTests
         {
             // Assert
             StringAssert.Contains(BankAccount.DebitAmountExceedsBalanceMessage, e.Message);
+            return;
         }
+
+        Assert.Fail("The expected exception was not thrown.");
     }
 }
