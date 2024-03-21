@@ -37,4 +37,16 @@ public class BankAccountTests
         // Act and assert
         Assert.That(() => account.Debit(debitAmount), Throws.TypeOf<ArgumentOutOfRangeException>());
     }
+
+    [Test]
+    public void Debit_WhenAmountIsMoreThanBalance_ShouldThrowArgumentOutOfRange()
+    {
+        // Arrange
+        double beginningBalance = 11.99;
+        double debitAmount = 100.00;
+        BankAccount account = new("Mr. Bryan Walton", beginningBalance);
+
+        // Act and assert
+        Assert.That(() => account.Debit(debitAmount), Throws.TypeOf<ArgumentOutOfRangeException>());
+    }
 }
