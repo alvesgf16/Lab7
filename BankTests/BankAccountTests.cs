@@ -1,6 +1,6 @@
 namespace BankTests;
 
-public class Tests
+public class BankAccountTests
 {
     [SetUp]
     public void Setup()
