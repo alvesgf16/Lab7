@@ -34,8 +34,16 @@ public class BankAccountTests
         double debitAmount = -100.00;
         BankAccount account = new("Mr. Bryan Walton", beginningBalance);
 
-        // Act and assert
-        Assert.That(() => account.Debit(debitAmount), Throws.TypeOf<ArgumentOutOfRangeException>());
+        // Act
+        try
+        {
+            account.Debit(debitAmount);
+        }
+        catch (ArgumentOutOfRangeException e)
+        {
+            // Assert
+            StringAssert.Contains(BankAccount.DebitAmountLessThanZeroMessage, e.Message);
+        }
     }
 
     [Test]
@@ -46,7 +54,15 @@ public class BankAccountTests
         double debitAmount = 100.00;
         BankAccount account = new("Mr. Bryan Walton", beginningBalance);
 
-        // Act and assert
-        Assert.That(() => account.Debit(debitAmount), Throws.TypeOf<ArgumentOutOfRangeException>());
+        // Act
+        try
+        {
+            account.Debit(debitAmount);
+        }
+        catch (ArgumentOutOfRangeException e)
+        {
+            // Assert
+            StringAssert.Contains(BankAccount.DebitAmountExceedsBalanceMessage, e.Message);
+        }
     }
 }
