@@ -1,3 +1,5 @@
+using BankAccountNS;
+
 namespace BankTests;
 
 public class BankAccountTests
@@ -8,8 +10,19 @@ public class BankAccountTests
     }
 
     [Test]
-    public void Test1()
+    public void Debit_WithValidAmount_UpdatesBalance()
     {
-        Assert.Pass();
+        // Arrange
+        double beginningBalance = 11.99;
+        double debitAmount = 4.55;
+        double expected = 7.44;
+        BankAccount account = new("Mr. Bryan Walton", beginningBalance);
+
+        // Act
+        account.Debit(debitAmount);
+
+        // Assert
+        double actual = account.Balance;
+        Assert.That(actual, Is.EqualTo(expected).Within(0.001), "Account not debited correctly");
     }
 }
